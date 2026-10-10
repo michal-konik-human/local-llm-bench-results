@@ -4,6 +4,7 @@ On 2026-10-10 the git history of the tool repos was rewritten to normalise autho
 `Michal Konik` on every commit; commit messages trimmed). **File contents and all author/committer dates are
 unchanged**, so each new commit has exactly the same tree as the old one; only the hashes differ.
 Run manifests in this repo record the hashes as they were at run time. Use this map to find them on GitHub.
+Every quality run published here was made after the rewrite, so its manifest already records the GitHub hash.
 
 ## local-llm-perf-bench
 
@@ -23,17 +24,6 @@ Run manifests in this repo record the hashes as they were at run time. Use this 
 | `ec86e27182` | `73ae4d7ae6` |
 | `9309956009` | `a91f3c819c` |
 | `ba040324e6` | `7fabd56ba4` |
-
-## local-llm-quality-bench
-
-| recorded (old) | on GitHub (new) |
-|---|---|
-| `1cd95cc030` | `ced7928f5a` |
-| `2cc9977004` | `091a1536b1` |
-| `277dd90131` | `0ef8d62cd1` |
-| `510fae0275` | `5d95afc4ef` |
-| `8102057c1c` | `c55a577e57` |
-| `f09a512738` | `f3aa711510` |
 
 ## radeon-r9700-rocm-notes
 

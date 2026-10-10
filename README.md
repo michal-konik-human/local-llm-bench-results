@@ -12,10 +12,10 @@ Quality and speed of open-weight LLMs, measured on one home rig with 4× AMD Rad
 Every number here comes from two open-source tools, and every run folder contains everything needed
 to reproduce it:
 
-- **[local-llm-quality-bench](https://github.com/michal-konik-human/local-llm-quality-bench)**: agent and
-  assistant tasks in Polish and English (tool calling, multi-step tasks in a mock calendar and mailbox, shopping
-  on a frozen web, instruction following, writing, reasoning, coding). Graded by code first, with an LLM judge
-  for writing only.
+- **[local-llm-quality-bench](https://github.com/michal-konik-human/local-llm-quality-bench)**: every quality
+  result here uses its **hard suite**, the same 20 tasks in Polish and English for every model: multi-step agent
+  workflows in a mock workspace, multi-hop research on a frozen web, and analysis of documents of 5k–14k tokens.
+  Built so that only frontier models should get close to 100, and graded entirely by code.
 - **[local-llm-perf-bench](https://github.com/michal-konik-human/local-llm-perf-bench)**: llama.cpp throughput
   with the conditions recorded (power cap, PCIe links, temperatures, error counters, effective parameters).
 
@@ -78,7 +78,7 @@ Or replay a single answer: every line of `samples.jsonl` holds the exact request
 
 ```bash
 # quality (writes to $QBENCH_RESULTS = this repo's quality/)
-python3 -m qbench run --model <profile> --k 3 && python3 -m qbench grade runs/<run-id> \
+python3 -m qbench run --model <profile> --suite hard --k 3 && python3 -m qbench grade runs/<run-id> \
   && python3 -m qbench report runs/<run-id> --publish
 # speed (writes to $LLM_PERF_RESULTS = this repo's perf/)
 bench-model <model>
