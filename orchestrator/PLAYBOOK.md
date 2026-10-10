@@ -25,7 +25,7 @@ The commands you may run:
 | `bench-model --list-new` | Models that have no speed measurement yet | seconds |
 | `bench-model <model>` | **Speed** measurement of one model (it picks the GPUs itself) | 5–60 min |
 | `qbench list` | Model profiles available for quality runs | seconds |
-| `qbench run --model <profile> --k 3` | **Quality** run: 115 tasks × 3 samples | 20 min – 3 h |
+| `qbench run --model <profile> --suite hard --k 3` | **Quality** run: the hard suite, 20 tasks × PL/EN × 3 samples. Every published result uses it | 1 – 12 h |
 | `qbench grade <run-id>` | Scores a quality run (code checks + LLM judge) | 2–20 min |
 | `qbench report <run-id> --publish` | Writes the report and adds the run to the leaderboard | seconds |
 | `qbench compare <run-id-A> <run-id-B>` | Paired difference between two quality runs | seconds |
@@ -61,12 +61,13 @@ If the output says a GPU is "NOT exclusive" or "NOT cooled down", wait (run `mod
 once), then retry `bench-model` **once**. If it fails again, report it and go to step 3.
 
 ### Step 3: quality
-1. Run `qbench run --model <profile> --k 3`. **If the task restricts the run, add exactly the options the
-   task names, and nothing else:** `--case <case-id>` (repeat it for several cases), `--family <family>`,
-   `--lang pl` or `--lang en`, `--k <n>`, `--run-id <id>`. Example: "only case tool-weather-diacritics, k=1,
-   run id demo-1" → `qbench run --model <profile> --case tool-weather-diacritics --k 1 --run-id demo-1`.
-   The last line of its output is the run directory;
-   the run id is the last part of that path (for example `20261010-201500-deepseek-v4-flash-0731-recommended`).
+1. Run `qbench run --model <profile> --suite hard --k 3`. Always keep `--suite hard`: every published
+   result uses the same tasks. **If the task restricts the run, add exactly the options the task names, and
+   nothing else:** `--case <case-id>` (repeat it for several cases), `--family <family>`, `--lang pl` or
+   `--lang en`, `--k <n>`, `--run-id <id>`. Example: "only case long-incident-log, k=1, run id demo-1" →
+   `qbench run --model <profile> --suite hard --case long-incident-log --k 1 --run-id demo-1`.
+   The last line of its output is the run directory; the run id is the last part of that path
+   (for example `20261010-221652-deepseek-v4-flash-0731-recommended-hard`).
 2. Run `qbench grade <run-id>`.
 3. Run `qbench report <run-id> --publish`.
 4. Run `build-results`.

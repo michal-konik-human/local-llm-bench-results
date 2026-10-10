@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild RESULTS.md: quality (quality/*/summary.json) next to speed (perf/all-benchmark-results.md),
-plus the list of runs with their dates. The hand-written findings between <!-- FINDINGS:START --> and
+plus the list of runs with their dates. The core and the hard quality suites get separate tables: their
+scores are never mixed. The hand-written findings between <!-- FINDINGS:START --> and
 <!-- FINDINGS:END --> are kept as they are.
 
     python3 tools/build_results.py
@@ -102,30 +103,60 @@ def main():
     prows = perf_table()
     speed = best_speed(prows)
 
-    T = ["", "| Model | 🇵🇱 Quality | 🇬🇧 Quality | PL − EN | Agent reliability 🇵🇱 / 🇬🇧 | Decode tok/s | Prompt tok/s | GPUs | Runs |",
-         "|---|---|---|---|---|---|---|---|---|"]
-    for r in sorted(summaries, key=lambda r: -((((r["langs"].get("pl") or {}).get("overall")) or {}).get("mean") or 0)):
-        m = r["model"]
-        pl, en = r["langs"].get("pl") or {}, r["langs"].get("en") or {}
-        sp = speed.get(m["name"], {})
-        tg, pp = sp.get("tg"), sp.get("pp")
-        rel = f"{pct((pl.get('reliability') or {}).get('pass_k'))} / {pct((en.get('reliability') or {}).get('pass_k'))}"
-        runs = f"[quality](quality/{r['run_id']}/report.md)" + (f" · [speed](perf/{tg[1]}/report.md)" if tg else "")
-        T.append(f"| **{m['display']}** <sub>{m.get('quant') or ''} · `{r['preset']['name']}`</sub> | {ci(pl.get('overall'))} | "
-                 f"{ci(en.get('overall'))} | {signed((r.get('lang_gap') or {}).get('gap'))} | {rel} | "
-                 f"{tg[0] if tg else '–'} | {round(pp[0]) if pp else '–'} | {(tg or pp or ('', '', '–'))[2]} | {runs} |")
-    T += ["", "Quality: 0–100, mean of the task families, 95% CI in brackets; agent reliability = pass^k on tool, agent "
-          "and shopping tasks (the chance that **all** k attempts succeed). Speed: decode `tg128` and prompt `pp512` "
-          "from the latest valid perf run of the same model on the same machine. Per-family scores: "
-          "[quality/leaderboard.md](quality/leaderboard.md); every speed measurement: "
+    def suite(s):
+        return s.get("suite") or "core"
+
+    def by_pl(rows):
+        return sorted(rows, key=lambda r: -((((r["langs"].get("pl") or {}).get("overall")) or {}).get("mean") or 0))
+
+    # one table per suite present (the published runs all use the hard suite); never mixed
+    FAMS = {"hard": [("agentic", "Agents"), ("web_research", "Research"), ("long_context", "Long docs")]}
+    TITLE = {"hard": "Hard suite", "core": "Core suite", "custom": "Custom case selection"}
+    NOTE = {
+        "hard": "Hard suite: 20 tasks, each in Polish and English: multi-step agent workflows, multi-hop research on a "
+                "frozen web, and analysis of documents of 5k–14k tokens, built so that only frontier models should get "
+                "close to 100 ([what is in it](https://github.com/michal-konik-human/local-llm-quality-bench#the-hard-suite)). "
+                "Quality: 0–100, mean of the three families, 95% CI in brackets, partial credit per task. Reliability = "
+                "pass^k on agent and research tasks (the chance that **all** k attempts succeed).",
+        "core": "Core suite: 60 screening tasks. Agent reliability = pass^k on tool, agent and shopping tasks.",
+    }
+
+    def fam(r, lang, f):
+        return pct((((r["langs"].get(lang) or {}).get("families") or {}).get(f) or {}).get("mean"))
+
+    present = [su for su in ("hard", "core", "custom") if any(suite(s) == su for s in summaries)]
+    T = [""]
+    for su in present:
+        fams = FAMS.get(su, [])
+        if len(present) > 1:
+            T += [f"### {TITLE[su]}", ""]
+        head = (["Model", "🇵🇱 Quality", "🇬🇧 Quality", "PL − EN"] + [f"{lab} 🇵🇱 / 🇬🇧" for _, lab in fams] +
+                ["Reliability 🇵🇱 / 🇬🇧", "Decode tok/s", "Prompt tok/s", "GPUs", "Runs"])
+        T += ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
+        for r in by_pl([s for s in summaries if suite(s) == su]):
+            m = r["model"]
+            pl, en = r["langs"].get("pl") or {}, r["langs"].get("en") or {}
+            sp = speed.get(m["name"], {})
+            tg, pp = sp.get("tg"), sp.get("pp")
+            rel = f"{pct((pl.get('reliability') or {}).get('pass_k'))} / {pct((en.get('reliability') or {}).get('pass_k'))}"
+            runs = f"[quality](quality/{r['run_id']}/report.md)" + (f" · [speed](perf/{tg[1]}/report.md)" if tg else "")
+            cells = ([f"**{m['display']}** <sub>{m.get('quant') or ''} · `{r['preset']['name']}` · k={r['k']}</sub>",
+                      ci(pl.get("overall")), ci(en.get("overall")), signed((r.get("lang_gap") or {}).get("gap"))] +
+                     [f"{fam(r, 'pl', f)} / {fam(r, 'en', f)}" for f, _ in fams] +
+                     [rel, f"{tg[0] if tg else '–'}", f"{round(pp[0]) if pp else '–'}", (tg or pp or ("", "", "–"))[2], runs])
+            T.append("| " + " | ".join(cells) + " |")
+        T += ["", NOTE.get(su, ""), ""]
+    T += ["Speed: decode `tg128` and prompt `pp512` from the latest valid perf run of the same model on the same machine. "
+          "Per-family scores with CIs: [quality/leaderboard.md](quality/leaderboard.md); every speed measurement: "
           "[perf/all-benchmark-results.md](perf/all-benchmark-results.md).", ""]
 
-    R = ["", "### Quality runs", "", "| Date | Model | Preset | k | Judge | Tool commit (as recorded) | Report |", "|---|---|---|---|---|---|---|"]
+    R = ["", "### Quality runs", "", "| Date | Suite | Model | Preset | k | Judge | Tool commit (as recorded) | Report |",
+         "|---|---|---|---|---|---|---|---|"]
     for s in sorted(summaries, key=lambda s: s["run_id"], reverse=True):
         man = manifests.get(s["run_id"], {})
         date = (man.get("started_at") or "")[:10] or run_date(s["run_id"])
         commit = ((man.get("bench") or {}).get("commit") or "")[:10]
-        R.append(f"| {date} | {s['model']['display']} | `{s['preset']['name']}` | {s['k']} | {s.get('judge') or '–'} | "
+        R.append(f"| {date} | {suite(s)} | {s['model']['display']} | `{s['preset']['name']}` | {s['k']} | {s.get('judge') or '–'} | "
                  f"`{commit}` | [{s['run_id']}](quality/{s['run_id']}/report.md) |")
     R += ["", "### Speed runs", "", "| Date | Model | Configs | Report |", "|---|---|---|---|"]
     seen = {}

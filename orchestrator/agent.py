@@ -42,7 +42,7 @@ ALLOW = [
     (rf"bench-model {NAME}( --gpus [1-4])?", None),
     (rf"curl -s -X POST http://127\.0\.0\.1:8080/api/models/unload", None),
     (rf"curl -s http://127\.0\.0\.1:8080/running", None),
-    (rf"qbench (list|validate|review)", "qbench"),
+    (rf"qbench (list|validate|review)( --suite (core|hard))?", "qbench"),
     (rf"qbench grade {NAME}( --no-judge)?", "qbench"),
     (rf"qbench report {NAME}( {NAME})*( --publish)?", "qbench"),
     (rf"qbench compare {NAME} {NAME}", "qbench"),
@@ -50,12 +50,13 @@ ALLOW = [
 ]
 FORBIDDEN_CHARS = set(";&|<>`$\\\n\r")
 RUN_OPTS = {"--model": NAME, "--preset": NAME, "--k": r"[1-9]", "--run-id": NAME,
-            "--family": r"[a-z_]+", "--case": NAME, "--lang": r"pl|en"}
+            "--family": r"[a-z_]+", "--case": NAME, "--lang": r"pl|en", "--suite": r"core|hard"}
 REPEATABLE = {"--family", "--case"}
 
 
 def qbench_run_ok(cmd):
-    """`qbench run` with options in ANY order; --model required; only --family/--case may repeat."""
+    """`qbench run` with options in ANY order; --model and --suite hard required (every published result uses
+    the same tasks); only --family/--case may repeat."""
     parts = cmd.split()
     if parts[:2] != ["qbench", "run"] or len(parts) % 2:
         return False
@@ -64,7 +65,7 @@ def qbench_run_ok(cmd):
         if opt not in RUN_OPTS or not re.fullmatch(RUN_OPTS[opt], val) or (opt in seen and opt not in REPEATABLE):
             return False
         seen.append(opt)
-    return "--model" in seen
+    return "--model" in seen and dict(zip(parts[2::2], parts[3::2])).get("--suite") == "hard"
 
 
 def check_command(cmd):
@@ -83,7 +84,8 @@ def check_command(cmd):
                 return True, "ok", f"cd {shlex.quote(RESULTS)} && python3 tools/build_results.py"
             return True, "ok", cmd
     return False, ("command not in the allowlist. Allowed: models-status, bench-model --list-new | <model>, "
-                   "the llama-swap unload/running curl, qbench list|validate|review|run|grade|report|compare, "
+                   "the llama-swap unload/running curl, qbench list|validate|review|grade|report|compare, "
+                   "qbench run --model <profile> --suite hard [--k N] [--case ID] [--family F] [--lang L] [--run-id ID], "
                    "build-results"), None
 
 
