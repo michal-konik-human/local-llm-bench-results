@@ -2,8 +2,8 @@
 
 ## Data: CC BY 4.0
 
-Everything under `quality/`, `perf/` and `serving/`, plus `hardware.md` and this README (results, reports,
-transcripts, measurements, configs), is licensed under the
+Everything under `quality/`, `perf/` and `serving/`, plus `RESULTS.md`, `hardware.md` and the README
+(results, reports, transcripts, measurements, configs), is licensed under the
 **Creative Commons Attribution 4.0 International License (CC BY 4.0)**:
 https://creativecommons.org/licenses/by/4.0/ (legal code: https://creativecommons.org/licenses/by/4.0/legalcode).
 
@@ -18,8 +18,8 @@ The model outputs in `samples.jsonl` were produced by the models named in each r
 
 Copyright (c) 2026 Michal Konik
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of the scripts in `tools/`
-(the "Software"), to deal in the Software without restriction, including without limitation the rights to
+Permission is hereby granted, free of charge, to any person obtaining a copy of the scripts in `tools/` and
+`orchestrator/` (the "Software"), to deal in the Software without restriction, including without limitation the rights to
 use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
 persons to whom the Software is furnished to do so, subject to the following conditions:
 

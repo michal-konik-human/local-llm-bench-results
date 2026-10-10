@@ -46,7 +46,7 @@ ALLOW = [
     (rf"qbench grade {NAME}( --no-judge)?", "qbench"),
     (rf"qbench report {NAME}( {NAME})*( --publish)?", "qbench"),
     (rf"qbench compare {NAME} {NAME}", "qbench"),
-    (r"build-results-readme", "readme"),
+    (r"build-results(-readme)?", "readme"),  # old name still accepted
 ]
 FORBIDDEN_CHARS = set(";&|<>`$\\\n\r")
 RUN_OPTS = {"--model": NAME, "--preset": NAME, "--k": r"[1-9]", "--run-id": NAME,
@@ -80,11 +80,11 @@ def check_command(cmd):
             if kind == "qbench":
                 return True, "ok", f"cd {shlex.quote(QBENCH)} && python3 -u -m {cmd}"
             if kind == "readme":
-                return True, "ok", f"cd {shlex.quote(RESULTS)} && python3 tools/build_readme.py"
+                return True, "ok", f"cd {shlex.quote(RESULTS)} && python3 tools/build_results.py"
             return True, "ok", cmd
     return False, ("command not in the allowlist. Allowed: models-status, bench-model --list-new | <model>, "
                    "the llama-swap unload/running curl, qbench list|validate|review|run|grade|report|compare, "
-                   "build-results-readme"), None
+                   "build-results"), None
 
 
 def run_command(cmd, dry_run=False, timeout=8 * 3600, log=print):

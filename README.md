@@ -4,13 +4,15 @@
 Quality and speed of open-weight LLMs, measured on one home rig with 4× AMD Radeon AI PRO R9700 (128 GB VRAM).
 
 ![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey)
-![Quality bench](https://img.shields.io/badge/quality-local--llm--quality--bench%20v1.0.0-blue)
-![Perf bench](https://img.shields.io/badge/speed-local--llm--perf--bench%20v2.0.0-blue)
+![Quality: local-llm-quality-bench](https://img.shields.io/badge/quality-local--llm--quality--bench-blue)
+![Speed: local-llm-perf-bench](https://img.shields.io/badge/speed-local--llm--perf--bench-blue)
+
+➡️ **[RESULTS.md](RESULTS.md)**: the leaderboard (quality next to speed), findings, and every run with its date.
 
 Every number here comes from two open-source tools, and every run folder contains everything needed
 to reproduce it:
 
-- **[local-llm-quality-bench](https://github.com/michal-konik-human/local-llm-quality-bench)**: 60 agent and
+- **[local-llm-quality-bench](https://github.com/michal-konik-human/local-llm-quality-bench)**: agent and
   assistant tasks in Polish and English (tool calling, multi-step tasks in a mock calendar and mailbox, shopping
   on a frozen web, instruction following, writing, reasoning, coding). Graded by code first, with an LLM judge
   for writing only.
@@ -28,45 +30,10 @@ Four repos, one job each:
 | [local-llm-bench-results](https://github.com/michal-konik-human/local-llm-bench-results) | **Data**: everything measured on the reference rig, quality next to speed | a benchmark run finishes |
 | [radeon-r9700-rocm-notes](https://github.com/michal-konik-human/radeon-r9700-rocm-notes) | **Platform**: making 4× Radeon AI PRO R9700 + ROCm work (setup, traps, monitoring, tuning) | hardware, drivers or the serving stack change, or a new trap is found |
 
-## Leaderboard
-
-<!-- FINDINGS:START -->
-**First results, 10 October 2026**, at k = 3 samples per item and vendor-recommended settings:
-
-- **A 3-bit quant can still be the most reliable agent on the box.** DeepSeek-V4-Flash-0731
-  (UD-IQ3_XXS, 97 GiB across 4 GPUs) scored **99 in Polish and 98 in English**. Every one of its
-  3 attempts succeeded on every tool-calling, agent and shopping task, in both languages (pass^3 = 100).
-- **Against gpt-oss-20b, on identical items:**
-  - DeepSeek leads by **+7 points overall** (95% CI +2 to +12).
-  - The lead comes from **shopping on the frozen web (+19), multi-step agent tasks (+14) and tool calling (+11)**.
-  - Writing shows no credible difference (−3, CI −10 to +5). Reasoning and coding are tied at 100: those
-    families are too easy at this size.
-- **The 20B model is 5.5× faster and needs one GPU.** In these runs gpt-oss-20b decoded at 128 tok/s against 23, and
-  answers a task in 2.9 s against 18.3 s at the median. Its reliability is the price: pass^3 is 68 (PL) /
-  75 (EN) on tool, agent and shopping tasks.
-- **Typical failures differ by model:**
-  - gpt-oss-20b invents an e-mail address instead of asking for one, guesses which of two "Tomasz" in IT
-    to e-mail, falls for a refurbished phone listed as the cheapest, and once wrote "22 plików"
-    (correct Polish: *22 pliki*).
-  - DeepSeek leaves placeholders such as `[Your Name]` in "ready-to-send" texts, and twice (out of 3) tweeted in
-    English for a Polish prompt.
-- **Neither model is worse in Polish:** the paired PL − EN gap is 0 for both (CIs −1 to +2 and −4 to +6).
-- **Caveats:** the Polish cases still await native-speaker review, and the judge (4 of 60 tasks) is not yet
-  calibrated against human labels. The rest is graded by code.
-<!-- FINDINGS:END -->
-
-<!-- TABLE:START -->
-| Model | 🇵🇱 Quality | 🇬🇧 Quality | PL − EN | Agent reliability 🇵🇱 / 🇬🇧 | Decode tok/s | Prompt tok/s | GPUs | Runs |
-|---|---|---|---|---|---|---|---|---|
-| **DeepSeek-V4-Flash-0731** <sub>UD-IQ3_XXS · `recommended`</sub> | 99 <sub>(97–100)</sub> | 98 <sub>(96–100)</sub> | 0 | 100 / 100 | 24.71 | 560 | 4×R9700 (0,1,2,3) | [quality](quality/20261010-deepseek-v4-flash-0731-recommended/report.md) · [speed](perf/20260930-221230/report.md) |
-| **gpt-oss-20b** <sub>MXFP4 · `recommended`</sub> | 93 <sub>(88–97)</sub> | 92 <sub>(86–98)</sub> | 0 | 68 / 75 | 149.53 | 5726 | 1×R9700 (0) | [quality](quality/20261010-gpt-oss-20b-recommended/report.md) · [speed](perf/20260930-125802/report.md) |
-
-Quality: 0–100, mean of 7 task families, 95% CI in brackets; agent reliability = pass^k on tool, agent and shopping tasks (the chance that **all** k=3 attempts succeed). Speed: decode `tg128` and prompt `pp512` from the perf bench on the same machine. Per-family scores: [quality/leaderboard.md](quality/leaderboard.md); all speed measurements: [perf/all-benchmark-results.md](perf/all-benchmark-results.md).
-<!-- TABLE:END -->
-
 ## What's here
 
 ```
+RESULTS.md                  leaderboard, findings and the list of runs (rebuilt by tools/build_results.py)
 quality/                    local-llm-quality-bench output ($QBENCH_RESULTS)
   leaderboard.md              every quality run side by side, per family and language, with CIs
   <run-id>/report.md          one run: scores, worst failures, how to replicate
@@ -78,25 +45,27 @@ perf/                       local-llm-perf-bench output ($LLM_PERF_RESULTS)
   <run-id>/report.md          one run: verdict, per-GPU telemetry, hardware/software state
   configs/                    the rig's tuned multi-GPU configs (tensor splits for 2, 3 and 4 cards)
 serving/llama-swap.yaml     how the models are served (flags, context, ubatch, chat templates)
+orchestrator/               a small model on the CPU that runs the benchmarks of the big ones
 hardware.md                 the machine
-tools/build_readme.py       rebuilds the table above from quality/ and perf/
+COMMIT-MAP.md               tool commits as recorded in runs -> the same commits on GitHub
+tools/build_results.py      rebuilds RESULTS.md from quality/ and perf/
 ```
 
-## How to read it
+## How to read the results
 
 - **Polish and English are never pooled.** A model that is great in English and weak in Polish shows exactly that.
-- **CIs matter.** These are 60 tasks × k=3 samples: enough to separate a good configuration from a bad one, not two
-  good ones a few points apart. Overlapping intervals mean "not distinguishable at this size".
-- **Reliability ≠ average.** For an assistant you rely on, pass^k (all three attempts succeed) matters more than the mean.
+- **CIs matter.** A few dozen tasks × a few samples separate a good configuration from a bad one, not two good
+  ones a few points apart. Overlapping intervals mean "not distinguishable at this size".
+- **Reliability ≠ average.** For an assistant you rely on, pass^k (all k attempts succeed) matters more than the mean.
 - **Read the transcripts.** Every report lists its worst failures; `samples.jsonl` has the full conversation for each.
-- **Settings are the vendor's.** Each run uses the model vendor's recommended sampling (source cited in the
-  model profile), served by llama.cpp through llama-swap, quantised as shown.
-- **Caveats on the first runs:** the Polish cases still await native-speaker review, and the LLM judge (used for
-  4 of 60 tasks) is not yet calibrated against human labels.
+- **Settings are the vendor's** unless a run's preset says otherwise: each model profile cites where its sampling
+  settings come from. Models are served by llama.cpp through llama-swap, quantised as shown.
+- **Caveats that apply to a run** (review status of cases, judge calibration) are stated in its `report.md`.
 
 ## Reproduce a result
 
-1. Check out the tool at the version named in the run's `manifest.json` (`bench.commit`; releases are tagged).
+1. Check out the tool at the version named in the run's `manifest.json` (`bench.commit`; see
+   [COMMIT-MAP.md](COMMIT-MAP.md) if the hash is not found on GitHub; releases are tagged).
 2. Get the same GGUF (`manifest.json → model.profile.weights`) and serve it with the same flags
    (`manifest.json → server.llama_swap.cmd`, or [serving/llama-swap.yaml](serving/llama-swap.yaml)).
 3. Run the same model profile and preset, then compare:
@@ -104,6 +73,20 @@ tools/build_readme.py       rebuilds the table above from quality/ and perf/
 
 Or replay a single answer: every line of `samples.jsonl` holds the exact request body. See the quality bench's
 [docs/REPLICATE.md](https://github.com/michal-konik-human/local-llm-quality-bench/blob/main/docs/REPLICATE.md).
+
+## Add a run
+
+```bash
+# quality (writes to $QBENCH_RESULTS = this repo's quality/)
+python3 -m qbench run --model <profile> --k 3 && python3 -m qbench grade runs/<run-id> \
+  && python3 -m qbench report runs/<run-id> --publish
+# speed (writes to $LLM_PERF_RESULTS = this repo's perf/)
+bench-model <model>
+# then
+python3 tools/build_results.py && git add -A && git commit -m "<model>: quality and speed"
+```
+
+Or let the [orchestrator](orchestrator/README.md) do it: `python3 orchestrator/agent.py "Measure <model> fully."`
 
 ## Run the benches on your own models
 
@@ -113,5 +96,5 @@ mine, please open an issue in the relevant tool repo: that's a finding about the
 
 ## License
 
-The data (results, transcripts, reports) is **CC BY 4.0**: reuse it, with attribution. The scripts in `tools/` are **MIT**.
-See [LICENSE.md](LICENSE.md).
+The data (results, transcripts, reports) is **CC BY 4.0**: reuse it, with attribution. The scripts in `tools/`
+and `orchestrator/` are **MIT**. See [LICENSE.md](LICENSE.md).

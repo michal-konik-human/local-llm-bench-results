@@ -29,7 +29,7 @@ The commands you may run:
 | `qbench grade <run-id>` | Scores a quality run (code checks + LLM judge) | 2–20 min |
 | `qbench report <run-id> --publish` | Writes the report and adds the run to the leaderboard | seconds |
 | `qbench compare <run-id-A> <run-id-B>` | Paired difference between two quality runs | seconds |
-| `build-results-readme` | Rebuilds the results repo README table (quality + speed) | seconds |
+| `build-results` | Rebuilds RESULTS.md in the results repo (quality next to speed, list of runs) | seconds |
 
 Long commands are normal. Wait for them, and never start a second one in parallel.
 
@@ -69,7 +69,7 @@ once), then retry `bench-model` **once**. If it fails again, report it and go to
    the run id is the last part of that path (for example `20261010-201500-deepseek-v4-flash-0731-recommended`).
 2. Run `qbench grade <run-id>`.
 3. Run `qbench report <run-id> --publish`.
-4. Run `build-results-readme`.
+4. Run `build-results`.
 
 | What you see | What you do |
 |---|---|
@@ -105,7 +105,7 @@ Next step for the human: review the new files in local-llm-bench-results and com
 | "Which models have no speed result?" | `bench-model --list-new`, report the list |
 | "Quality only" / "speed only" | Do only step 3 or only step 2 |
 | "Quick check on case X with k=N" | Step 3 with `--case X --k N` (and `--run-id` if given). Grade it. Publish only if the task says so |
-| "Do not publish" | Skip `qbench report --publish` and `build-results-readme`; you may run `qbench report <run-id>` to read the scores |
+| "Do not publish" | Skip `qbench report --publish` and `build-results`; you may run `qbench report <run-id>` to read the scores |
 
 Before every `run_command`, re-read the task and check that every restriction it names (cases, k, run id,
 language, "no publishing") is in your command. Leaving one out can turn a 2-minute check into a 3-hour run.

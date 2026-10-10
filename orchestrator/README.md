@@ -17,7 +17,7 @@ and publishing, then reports back.
 
 | Candidate | Fits in RAM next to DeepSeek? | Agent skill (quality bench, k=3) | Verdict |
 |---|---|---|---|
-| **gpt-oss-20b** MXFP4 | ✅ 12 GB of the ~38 GB free while DeepSeek is loaded | <!-- ORCH:GPTOSS --> | **use this** |
+| **gpt-oss-20b** MXFP4 | ✅ 12 GB of the ~38 GB free while DeepSeek is loaded | PL / EN: tools 86 / 92, agent 85 / 87, shopping 89 / 72, instructions 98 / 94 ([run](../quality/20261010-gpt-oss-20b-recommended/report.md)) | **use this** |
 | Bielik-11B Q8_0 | ✅ 12 GB | not measured yet; needed a patched tool template, overcalls tools | maybe later |
 | Qwen3-32B Q4_K_M | ✅ 18 GB, but dense: a few tok/s on CPU | not measured yet | too slow |
 | Qwen3-Next-80B Q4_1 | ❌ 47 GB | – | doesn't fit |
@@ -28,7 +28,9 @@ process on a GPU would also contaminate the speed measurement (the perf bench re
 GPU is shared). On the CPU, the orchestrator is invisible to both benches. While it thinks, the model
 under test is idle, and while a benchmark runs, the orchestrator is just waiting.
 
-<!-- ORCH:SPEED -->
+**Measured on the rig:** gpt-oss-20b on 8 CPU threads decodes at **23 tok/s** (as fast as DeepSeek on the
+GPUs) and reads prompts at ~98 tok/s. The first turn reads the ~3k-token playbook (~30 s), later turns take
+5–60 s, and none of that time overlaps a measurement.
 
 ## Setup (once)
 
@@ -57,7 +59,7 @@ commits, pushes or deletes.
 
 The model gets three tools: `run_command`, `read_file` and `finish`. `run_command` accepts **only** the
 commands in the allowlist at the top of [agent.py](agent.py): `models-status`, `bench-model`, the
-llama-swap unload/status calls, `qbench list|validate|review|run|grade|report|compare`, and the README
+llama-swap unload/status calls, `qbench list|validate|review|run|grade|report|compare`, and the RESULTS.md
 rebuild. Any shell syntax (`; & | < > $` backticks, newlines) is rejected. `read_file` only reads inside
 the three repos. Every prompt, tool call and output is logged to `orchestrator/logs/` (git-ignored).
 
