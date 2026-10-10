@@ -1,0 +1,317 @@
+{
+  "run_id": "20261010-gpt-oss-20b-recommended",
+  "generated_at": "2026-10-10T19:56:49+02:00",
+  "k": 3,
+  "model": {
+    "name": "gpt-oss-20b",
+    "display": "gpt-oss-20b",
+    "family": "gpt-oss",
+    "quant": "MXFP4",
+    "params": "21B total / 3.6B active (MoE)",
+    "license": "Apache-2.0",
+    "repo": "https://huggingface.co/openai/gpt-oss-20b",
+    "perf": {
+      "decode_tps": 149.5,
+      "source": "https://github.com/michal-konik-human/local-llm-perf-bench/blob/main/results/all-benchmark-results.md"
+    }
+  },
+  "preset": {
+    "name": "recommended",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "max_tokens": 6144,
+    "extra_body": {
+      "chat_template_kwargs": {
+        "reasoning_effort": "medium"
+      }
+    },
+    "source": "OpenAI gpt-oss model card: temperature 1.0, top_p 1.0; reasoning effort set in the system/developer message (default medium)"
+  },
+  "server_build": "b265-680a036",
+  "sampling_mismatches": [],
+  "judge": "deepseek-v4-flash-0731",
+  "judge_calibration": null,
+  "langs": {
+    "pl": {
+      "overall": {
+        "mean": 0.9288868102796675,
+        "ci": [
+          0.8778303506017792,
+          0.9684275888133032
+        ],
+        "n_families": 7
+      },
+      "families": {
+        "tool_calling": {
+          "mean": 0.8571428571428571,
+          "ci": [
+            0.7380952380952381,
+            0.9523809523809524
+          ],
+          "n_items": 14,
+          "n_cases": 14,
+          "pass1": 0.8571428571428571,
+          "pass_k": 0.6428571428571429,
+          "worst_k": 0.6428571428571429,
+          "k": 3
+        },
+        "agentic": {
+          "mean": 0.8541666666666666,
+          "ci": [
+            0.5833333333333334,
+            1.0
+          ],
+          "n_items": 8,
+          "n_cases": 8,
+          "pass1": 0.8333333333333334,
+          "pass_k": 0.75,
+          "worst_k": 0.8125,
+          "k": 3
+        },
+        "web_shopping": {
+          "mean": 0.8888888888888888,
+          "ci": [
+            0.7777777777777777,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.8888888888888888,
+          "pass_k": 0.6666666666666666,
+          "worst_k": 0.6666666666666666,
+          "k": 3
+        },
+        "instruction_following": {
+          "mean": 0.9814833333333333,
+          "ci": [
+            0.9537083333333333,
+            1.0
+          ],
+          "n_items": 12,
+          "n_cases": 12,
+          "pass1": 0.9444444444444445,
+          "pass_k": 0.8333333333333334,
+          "worst_k": 0.9444499999999999,
+          "k": 3
+        },
+        "writing": {
+          "mean": 0.920525925925926,
+          "ci": [
+            0.8302481481481482,
+            1.0
+          ],
+          "n_items": 9,
+          "n_cases": 9,
+          "pass1": 0.8148148148148148,
+          "pass_k": 0.6666666666666666,
+          "worst_k": 0.8171333333333333,
+          "k": 3
+        },
+        "reasoning": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "coding": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 4,
+          "n_cases": 4,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        }
+      },
+      "reliability": {
+        "mean": 0.8630952380952381,
+        "ci": [
+          0.7619047619047619,
+          0.9404761904761905
+        ],
+        "n_items": 28,
+        "n_cases": 28,
+        "pass1": 0.8571428571428571,
+        "pass_k": 0.6785714285714286,
+        "worst_k": 0.6964285714285714,
+        "k": 3
+      }
+    },
+    "en": {
+      "overall": {
+        "mean": 0.9216261904761904,
+        "ci": [
+          0.8557901273329845,
+          0.978128197945845
+        ],
+        "n_families": 7
+      },
+      "families": {
+        "tool_calling": {
+          "mean": 0.9166666666666667,
+          "ci": [
+            0.8095238095238095,
+            1.0
+          ],
+          "n_items": 14,
+          "n_cases": 14,
+          "pass1": 0.9047619047619048,
+          "pass_k": 0.7857142857142857,
+          "worst_k": 0.8214285714285714,
+          "k": 3
+        },
+        "agentic": {
+          "mean": 0.8749916666666667,
+          "ci": [
+            0.6666416666666667,
+            1.0
+          ],
+          "n_items": 8,
+          "n_cases": 8,
+          "pass1": 0.7916666666666666,
+          "pass_k": 0.75,
+          "worst_k": 0.85415,
+          "k": 3
+        },
+        "web_shopping": {
+          "mean": 0.7222222222222222,
+          "ci": [
+            0.38888888888888884,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.7222222222222222,
+          "pass_k": 0.6666666666666666,
+          "worst_k": 0.6666666666666666,
+          "k": 3
+        },
+        "instruction_following": {
+          "mean": 0.9444472222222222,
+          "ci": [
+            0.8611194444444444,
+            1.0
+          ],
+          "n_items": 12,
+          "n_cases": 12,
+          "pass1": 0.8888888888888888,
+          "pass_k": 0.8333333333333334,
+          "worst_k": 0.8888916666666667,
+          "k": 3
+        },
+        "writing": {
+          "mean": 0.9930555555555555,
+          "ci": [
+            0.9791666666666666,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.9444444444444445,
+          "pass_k": 0.8333333333333334,
+          "worst_k": 0.9791666666666666,
+          "k": 3
+        },
+        "reasoning": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "coding": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 4,
+          "n_cases": 4,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        }
+      },
+      "reliability": {
+        "mean": 0.8630928571428571,
+        "ci": [
+          0.749995238095238,
+          0.9523809523809524
+        ],
+        "n_items": 28,
+        "n_cases": 28,
+        "pass1": 0.8333333333333333,
+        "pass_k": 0.75,
+        "worst_k": 0.7976142857142857,
+        "k": 3
+      }
+    }
+  },
+  "lang_gap": {
+    "gap": 0.001895151515151513,
+    "ci": [
+      -0.043434545454545455,
+      0.05744969696969697
+    ],
+    "n_cases": 55
+  },
+  "cost": {
+    "median_completion_tokens": 339.5,
+    "median_decode_tps": 127.6,
+    "median_latency_s": 2.9
+  },
+  "checks_revised": [
+    "agent-contact-disambiguation-by-team",
+    "agent-find-free-slot",
+    "agent-policy-no-weekend",
+    "if-no-placeholders",
+    "tool-nested-invoice",
+    "tool-relative-datetime",
+    "write-apology-email-formal",
+    "write-feminine-agreement-pl",
+    "write-plain-language",
+    "write-polish-formats-pl",
+    "write-rag-not-in-document"
+  ],
+  "grader": {
+    "commit": "f09a512738f651444bbcd10ecb239a90851609cd",
+    "dirty": false
+  },
+  "health": {
+    "samples": 345,
+    "errors": 2,
+    "excluded": 0,
+    "max_turns": 1,
+    "unparseable": 1,
+    "truncated": 0,
+    "pending": 0,
+    "tool_parse_fallback": 0,
+    "cases_pending_review": 60,
+    "cases": 60
+  }
+}

@@ -1,0 +1,123 @@
+# llama-swap config used for every run in this repo (comments removed, home directory shown as ~).
+# One model in VRAM at a time; each entry launches llama.cpp llama-server with the flags below.
+# HIP_VISIBLE_DEVICES picks the GPUs; --tensor-split balances layers across them.
+# --agent enables llama-server built-in tools for the web UI only; the benches use /v1/chat/completions,
+# which never executes them.
+healthCheckTimeout: 300
+
+macros:
+  server: "~/llama.cpp/build/bin/llama-server --port ${PORT} --jinja --agent -fa on"
+
+models:
+  "bielik-11b":
+    cmd: |
+      ${server}
+      -m ~/models/bielik-11b/Bielik-11B-v3.0-Instruct.Q8_0.gguf
+      -ngl 999 --ctx-size 32768 --load-mode dio
+      --ubatch-size 2048
+      --chat-template-file ~/.config/llama-swap/templates/bielik-11b-tools.jinja
+    env:
+      - "HIP_VISIBLE_DEVICES=0"
+    ttl: 600
+    aliases:
+      - "bielik"
+
+  "gpt-oss-20b":
+    cmd: |
+      ${server}
+      -m ~/models/gpt-oss-20b/gpt-oss-20b-MXFP4.gguf
+      -ngl 999 --ctx-size 131072 --load-mode dio
+      --ubatch-size 2048
+    env:
+      - "HIP_VISIBLE_DEVICES=0"
+    ttl: 600
+    aliases:
+      - "gpt-oss"
+
+  "qwen3-32b":
+    cmd: |
+      ${server}
+      -m ~/models/qwen3-32b/Qwen_Qwen3-32B-Q4_K_M.gguf
+      -ngl 999 --ctx-size 32768 --load-mode dio
+      --ubatch-size 1024
+    env:
+      - "HIP_VISIBLE_DEVICES=0"
+    ttl: 600
+    aliases:
+      - "qwen3"
+
+  "qwen3-next-80b":
+    cmd: |
+      ${server}
+      -m ~/models/qwen3-next-80b/Q4_1/Qwen3-Next-80B-A3B-Instruct-Q4_1-00001-of-00002.gguf
+      -ngl 999 --split-mode layer --tensor-split 0.9,1 --ctx-size 262144 --load-mode dio
+      --ubatch-size 1024
+    env:
+      - "HIP_VISIBLE_DEVICES=0,1"
+    ttl: 600
+    aliases:
+      - "qwen3-next"
+
+  "gpt-oss-120b":
+    cmd: |
+      ${server}
+      -m ~/models/gpt-oss-120b/gpt-oss-120b-MXFP4.gguf
+      -ngl 999 --split-mode layer --tensor-split 1,1,1 --ctx-size 131072 --load-mode dio
+      --ubatch-size 1024
+    env:
+      - "HIP_VISIBLE_DEVICES=0,1,2"
+    ttl: 600
+    aliases:
+      - "gpt-oss-big"
+
+  "laguna-s-2.1":
+    cmd: |
+      ${server}
+      -m ~/models/laguna-s-2.1/UD-Q4_K_XL/Laguna-S-2.1-UD-Q4_K_XL-00001-of-00003.gguf
+      -ngl 999 --split-mode layer --tensor-split 0.9,1,1.1 --ctx-size 262144 --load-mode dio
+      --ubatch-size 2048
+    env:
+      - "HIP_VISIBLE_DEVICES=0,1,2"
+    ttl: 600
+    aliases:
+      - "laguna"
+
+  "qwen3-235b-q3":
+    cmd: |
+      ${server}
+      -m ~/models/Qwen3-235B-A22B-GGUF/UD-Q3_K_XL/Qwen3-235B-A22B-UD-Q3_K_XL-00001-of-00003.gguf
+      -ngl 999 --split-mode layer --tensor-split 0.95,1,1,1.05 --ctx-size 40960 --load-mode dio
+      --batch-size 4096 --ubatch-size 4096
+    env:
+      - "HIP_VISIBLE_DEVICES=0,1,2,3"
+    ttl: 600
+    aliases:
+      - "qwen3-235b"
+      - "qwen3-235b-xl"
+      - "qwen3-q3"
+
+  "deepseek-v4-flash-0731":
+    cmd: |
+      ${server}
+      -m ~/models/DeepSeek-V4-Flash-0731-GGUF/UD-IQ3_XXS/DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00001-of-00004.gguf
+      -ngl 999 --split-mode layer --tensor-split 0.97,1,0.92,1.11 --ctx-size 524288 --load-mode dio
+      --parallel 1 --ubatch-size 1024
+      --temp 1.0 --top-p 1.0 --top-k 0 --min-p 0
+    env:
+      - "HIP_VISIBLE_DEVICES=0,1,2,3"
+    ttl: 600
+    aliases:
+      - "deepseek-v4-flash"
+      - "deepseek"
+      - "deepseek-v4"
+      - "deepseek-0731"
+      - "deepseek-v4-0731"
+
+  "gpt-oss-20b-cpu":
+    cmd: |
+      ${server}
+      -m ~/models/gpt-oss-20b/gpt-oss-20b-MXFP4.gguf
+      -ngl 0 -t 8 --ctx-size 32768
+    env:
+      - "HIP_VISIBLE_DEVICES="
+    ttl: 900

@@ -1,0 +1,313 @@
+{
+  "run_id": "20261010-deepseek-v4-flash-0731-recommended",
+  "generated_at": "2026-10-10T19:56:49+02:00",
+  "k": 3,
+  "model": {
+    "name": "deepseek-v4-flash-0731",
+    "display": "DeepSeek-V4-Flash-0731",
+    "family": "deepseek",
+    "quant": "UD-IQ3_XXS",
+    "params": "MoE (see model card)",
+    "license": "MIT",
+    "repo": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+    "perf": {
+      "decode_tps": 23.85,
+      "source": "https://github.com/michal-konik-human/local-llm-perf-bench/blob/main/results/all-benchmark-results.md"
+    }
+  },
+  "preset": {
+    "name": "recommended",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "max_tokens": 8192,
+    "extra_body": {},
+    "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731 : temperature 1.0, top_p 0.95 for agentic scenarios (1.0 otherwise); thinking on by default in the Unsloth GGUF template"
+  },
+  "server_build": "b265-680a036",
+  "sampling_mismatches": [],
+  "judge": "gpt-oss-120b",
+  "judge_calibration": null,
+  "langs": {
+    "pl": {
+      "overall": {
+        "mean": 0.9877640211640212,
+        "ci": [
+          0.974700992063492,
+          0.9975198412698413
+        ],
+        "n_families": 7
+      },
+      "families": {
+        "tool_calling": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 14,
+          "n_cases": 14,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "agentic": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 8,
+          "n_cases": 8,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "web_shopping": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "instruction_following": {
+          "mean": 0.9861111111111112,
+          "ci": [
+            0.9583333333333334,
+            1.0
+          ],
+          "n_items": 12,
+          "n_cases": 12,
+          "pass1": 0.9444444444444445,
+          "pass_k": 0.9166666666666666,
+          "worst_k": 0.9791666666666666,
+          "k": 3
+        },
+        "writing": {
+          "mean": 0.9282370370370371,
+          "ci": [
+            0.8479814814814814,
+            0.9876555555555555
+          ],
+          "n_items": 9,
+          "n_cases": 9,
+          "pass1": 0.7777777777777778,
+          "pass_k": 0.5555555555555556,
+          "worst_k": 0.8495333333333333,
+          "k": 3
+        },
+        "reasoning": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "coding": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 4,
+          "n_cases": 4,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        }
+      },
+      "reliability": {
+        "mean": 1.0,
+        "ci": [
+          1.0,
+          1.0
+        ],
+        "n_items": 28,
+        "n_cases": 28,
+        "pass1": 1.0,
+        "pass_k": 1.0,
+        "worst_k": 1.0,
+        "k": 3
+      }
+    },
+    "en": {
+      "overall": {
+        "mean": 0.9828035714285714,
+        "ci": [
+          0.9603630952380952,
+          0.9982993197278912
+        ],
+        "n_families": 7
+      },
+      "families": {
+        "tool_calling": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 14,
+          "n_cases": 14,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "agentic": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 8,
+          "n_cases": 8,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "web_shopping": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "instruction_following": {
+          "mean": 0.972225,
+          "ci": [
+            0.916675,
+            1.0
+          ],
+          "n_items": 12,
+          "n_cases": 12,
+          "pass1": 0.9166666666666666,
+          "pass_k": 0.9166666666666666,
+          "worst_k": 0.972225,
+          "k": 3
+        },
+        "writing": {
+          "mean": 0.9074,
+          "ci": [
+            0.7731222222222223,
+            0.9907444444444445
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.6666666666666666,
+          "pass_k": 0.5,
+          "worst_k": 0.8680499999999999,
+          "k": 3
+        },
+        "reasoning": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        },
+        "coding": {
+          "mean": 1.0,
+          "ci": [
+            1.0,
+            1.0
+          ],
+          "n_items": 4,
+          "n_cases": 4,
+          "pass1": 1.0,
+          "pass_k": 1.0,
+          "worst_k": 1.0,
+          "k": 3
+        }
+      },
+      "reliability": {
+        "mean": 1.0,
+        "ci": [
+          1.0,
+          1.0
+        ],
+        "n_items": 28,
+        "n_cases": 28,
+        "pass1": 1.0,
+        "pass_k": 1.0,
+        "worst_k": 1.0,
+        "k": 3
+      }
+    }
+  },
+  "lang_gap": {
+    "gap": 0.0006309090909090901,
+    "ci": [
+      -0.01350969696969697,
+      0.01641212121212121
+    ],
+    "n_cases": 55
+  },
+  "cost": {
+    "median_completion_tokens": 377,
+    "median_decode_tps": 23.2,
+    "median_latency_s": 18.3
+  },
+  "checks_revised": [
+    "agent-contact-disambiguation-by-team",
+    "agent-find-free-slot",
+    "agent-policy-no-weekend",
+    "if-no-placeholders",
+    "tool-nested-invoice",
+    "tool-relative-datetime",
+    "write-apology-email-formal",
+    "write-feminine-agreement-pl",
+    "write-plain-language",
+    "write-polish-formats-pl",
+    "write-rag-not-in-document"
+  ],
+  "grader": {
+    "commit": "f09a512738f651444bbcd10ecb239a90851609cd",
+    "dirty": false
+  },
+  "health": {
+    "samples": 345,
+    "errors": 0,
+    "excluded": 0,
+    "max_turns": 0,
+    "unparseable": 0,
+    "truncated": 0,
+    "pending": 0,
+    "tool_parse_fallback": 0,
+    "cases_pending_review": 60,
+    "cases": 60
+  }
+}
