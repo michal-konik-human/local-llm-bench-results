@@ -88,6 +88,14 @@ def best_speed(prows):
     return out
 
 
+def judge_cell(s):
+    """The judge model, but only when the run actually had LLM-judged (rubric) checks."""
+    path = os.path.join(ROOT, "quality", s["run_id"], "grades.jsonl")
+    judged = os.path.exists(path) and any(c.get("scorer") == "rubric" for line in open(path, encoding="utf-8")
+                                          for c in json.loads(line).get("checks", []))
+    return (s.get("judge") or "–") if judged else "none (all code-graded)"
+
+
 def run_date(run_id):
     m = re.match(r"(\d{4})(\d{2})(\d{2})", run_id or "")
     return f"{m.group(1)}-{m.group(2)}-{m.group(3)}" if m else "–"
@@ -156,7 +164,7 @@ def main():
         man = manifests.get(s["run_id"], {})
         date = (man.get("started_at") or "")[:10] or run_date(s["run_id"])
         commit = ((man.get("bench") or {}).get("commit") or "")[:10]
-        R.append(f"| {date} | {suite(s)} | {s['model']['display']} | `{s['preset']['name']}` | {s['k']} | {s.get('judge') or '–'} | "
+        R.append(f"| {date} | {suite(s)} | {s['model']['display']} | `{s['preset']['name']}` | {s['k']} | {judge_cell(s)} | "
                  f"`{commit}` | [{s['run_id']}](quality/{s['run_id']}/report.md) |")
     R += ["", "### Speed runs", "", "| Date | Model | Configs | Report |", "|---|---|---|---|"]
     seen = {}

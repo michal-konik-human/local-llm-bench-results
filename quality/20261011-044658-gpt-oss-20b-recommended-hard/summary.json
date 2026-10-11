@@ -1,0 +1,199 @@
+{
+  "run_id": "20261011-044658-gpt-oss-20b-recommended-hard",
+  "generated_at": "2026-10-11T05:51:49+02:00",
+  "k": 3,
+  "suite": "hard",
+  "model": {
+    "name": "gpt-oss-20b",
+    "display": "gpt-oss-20b",
+    "family": "gpt-oss",
+    "quant": "MXFP4",
+    "params": "21B total / 3.6B active (MoE)",
+    "license": "Apache-2.0",
+    "repo": "https://huggingface.co/openai/gpt-oss-20b",
+    "perf": null
+  },
+  "preset": {
+    "name": "recommended",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "max_tokens": 6144,
+    "extra_body": {
+      "chat_template_kwargs": {
+        "reasoning_effort": "medium"
+      }
+    },
+    "source": "OpenAI gpt-oss model card: temperature 1.0, top_p 1.0; reasoning effort set in the system/developer message (default medium)"
+  },
+  "server_build": "b265-680a036",
+  "sampling_mismatches": [],
+  "judge": "deepseek-v4-flash-0731",
+  "judge_calibration": null,
+  "langs": {
+    "pl": {
+      "overall": {
+        "mean": 0.4700273148148148,
+        "ci": [
+          0.33630037037037036,
+          0.6139486772486772
+        ],
+        "n_families": 3
+      },
+      "families": {
+        "agentic": {
+          "mean": 0.5963388888888889,
+          "ci": [
+            0.4402777777777778,
+            0.7431833333333332
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.0,
+          "pass_k": 0.0,
+          "worst_k": 0.4855666666666667,
+          "k": 3
+        },
+        "web_research": {
+          "mean": 0.3024722222222222,
+          "ci": [
+            0.09413888888888888,
+            0.6034
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.2222222222222222,
+          "pass_k": 0.16666666666666666,
+          "worst_k": 0.16666666666666666,
+          "k": 3
+        },
+        "long_context": {
+          "mean": 0.5112708333333333,
+          "ci": [
+            0.24235,
+            0.75175
+          ],
+          "n_items": 8,
+          "n_cases": 8,
+          "pass1": 0.25,
+          "pass_k": 0.125,
+          "worst_k": 0.370375,
+          "k": 3
+        }
+      },
+      "reliability": {
+        "mean": 0.44940555555555556,
+        "ci": [
+          0.28304722222222223,
+          0.6326388888888889
+        ],
+        "n_items": 12,
+        "n_cases": 12,
+        "pass1": 0.1111111111111111,
+        "pass_k": 0.08333333333333333,
+        "worst_k": 0.32611666666666667,
+        "k": 3
+      }
+    },
+    "en": {
+      "overall": {
+        "mean": 0.5247837962962963,
+        "ci": [
+          0.3955174603174603,
+          0.6636843915343915
+        ],
+        "n_families": 3
+      },
+      "families": {
+        "agentic": {
+          "mean": 0.6424611111111111,
+          "ci": [
+            0.49513333333333337,
+            0.7910777777777778
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.05555555555555555,
+          "pass_k": 0.0,
+          "worst_k": 0.4730666666666667,
+          "k": 3
+        },
+        "web_research": {
+          "mean": 0.3462944444444444,
+          "ci": [
+            0.10555555555555556,
+            0.5962888888888889
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.2222222222222222,
+          "pass_k": 0.0,
+          "worst_k": 0.12221666666666668,
+          "k": 3
+        },
+        "long_context": {
+          "mean": 0.5855958333333333,
+          "ci": [
+            0.3374916666666667,
+            0.8102041666666667
+          ],
+          "n_items": 8,
+          "n_cases": 8,
+          "pass1": 0.375,
+          "pass_k": 0.125,
+          "worst_k": 0.4070875,
+          "k": 3
+        }
+      },
+      "reliability": {
+        "mean": 0.4943777777777778,
+        "ci": [
+          0.3270777777777778,
+          0.6502194444444445
+        ],
+        "n_items": 12,
+        "n_cases": 12,
+        "pass1": 0.13888888888888887,
+        "pass_k": 0.0,
+        "worst_k": 0.29764166666666664,
+        "k": 3
+      }
+    }
+  },
+  "lang_gap": {
+    "gap": -0.056713333333333324,
+    "ci": [
+      -0.17623166666666665,
+      0.05081500000000002
+    ],
+    "n_cases": 20
+  },
+  "cost": {
+    "median_completion_tokens": 1985.0,
+    "median_decode_tps": 121.5,
+    "median_latency_s": 21.45
+  },
+  "checks_revised": [],
+  "grader": {
+    "commit": "a613e07fdfae263c5762ed5bacef4007eb7a9f8e",
+    "dirty": false
+  },
+  "health": {
+    "samples": 120,
+    "errors": 0,
+    "excluded": 0,
+    "max_turns": 0,
+    "unparseable": 0,
+    "truncated": 4,
+    "pending": 0,
+    "tool_parse_fallback": 0,
+    "cases_pending_review": 20,
+    "cases": 20
+  }
+}
