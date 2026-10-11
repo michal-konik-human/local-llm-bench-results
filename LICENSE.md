@@ -8,7 +8,7 @@ Everything under `quality/`, `perf/` and `serving/`, plus `RESULTS.md`, `hardwar
 https://creativecommons.org/licenses/by/4.0/ (legal code: https://creativecommons.org/licenses/by/4.0/legalcode).
 
 You may share and adapt it for any purpose, including commercially, as long as you give appropriate credit
-(e.g. "Michał Konik, local-llm-bench-results, https://github.com/michal-konik-human/local-llm-bench-results"),
+(e.g. "Michał Konik, local-llm-bench-results, https://github.com/michal-koniu/local-llm-bench-results"),
 link to the license, and indicate if changes were made.
 
 The model outputs in `samples.jsonl` were produced by the models named in each run; their own licenses

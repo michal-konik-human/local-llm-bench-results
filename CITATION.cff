@@ -4,6 +4,6 @@ title: "local-llm-bench-results: quality (PL/EN) and speed of open LLMs on 4x Ra
 authors:
   - family-names: Konik
     given-names: Michał
-repository-code: "https://github.com/michal-konik-human/local-llm-bench-results"
+repository-code: "https://github.com/michal-koniu/local-llm-bench-results"
 license: CC-BY-4.0
 date-released: 2026-10-10

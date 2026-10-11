@@ -69,5 +69,5 @@ the three repos. Every prompt, tool call and output is logged to `orchestrator/l
 |---|---|
 | [PLAYBOOK.md](PLAYBOOK.md) | The system prompt: procedure, decision tables, prohibitions, report format |
 | [agent.py](agent.py) | The tool loop (stdlib only) and the allowlist |
-| Perf bench [docs/AGENT-PLAYBOOK.md](https://github.com/michal-konik-human/local-llm-perf-bench/blob/main/docs/AGENT-PLAYBOOK.md) | Generic playbook for speed runs only |
-| Quality bench [docs/AGENT-PLAYBOOK.md](https://github.com/michal-konik-human/local-llm-quality-bench/blob/main/docs/AGENT-PLAYBOOK.md) | Generic playbook for quality runs only |
+| Perf bench [docs/AGENT-PLAYBOOK.md](https://github.com/michal-koniu/local-llm-perf-bench/blob/main/docs/AGENT-PLAYBOOK.md) | Generic playbook for speed runs only |
+| Quality bench [docs/AGENT-PLAYBOOK.md](https://github.com/michal-koniu/local-llm-quality-bench/blob/main/docs/AGENT-PLAYBOOK.md) | Generic playbook for quality runs only |

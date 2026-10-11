@@ -123,7 +123,7 @@ def main():
     NOTE = {
         "hard": "Hard suite: 20 tasks, each in Polish and English: multi-step agent workflows, multi-hop research on a "
                 "frozen web, and analysis of documents of 5k–14k tokens, built so that only frontier models should get "
-                "close to 100 ([what is in it](https://github.com/michal-konik-human/local-llm-quality-bench#the-hard-suite)). "
+                "close to 100 ([what is in it](https://github.com/michal-koniu/local-llm-quality-bench#the-hard-suite)). "
                 "Quality: 0–100, mean of the three families, 95% CI in brackets, partial credit per task. Reliability = "
                 "pass^k on agent and research tasks (the chance that **all** k attempts succeed).",
         "core": "Core suite: 60 screening tasks. Agent reliability = pass^k on tool, agent and shopping tasks.",
