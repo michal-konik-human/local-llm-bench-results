@@ -1,4 +1,7 @@
-# llama-swap config used for every run in this repo (comments removed, home directory shown as ~).
+# Current llama-swap config of the reference rig (comments removed, home directory shown as ~).
+# The exact command of every run is in its manifest.json (server.llama_swap.cmd). Until 2026-10-11
+# DeepSeek-V4-Flash-0731 was served with --parallel 1; since then with --parallel 4 (4 agents at once,
+# single-agent speed unchanged, see PARALLEL.md).
 # One model in VRAM at a time; each entry launches llama.cpp llama-server with the flags below.
 # HIP_VISIBLE_DEVICES picks the GPUs; --tensor-split balances layers across them.
 # --agent enables llama-server built-in tools for the web UI only; the benches use /v1/chat/completions,
@@ -101,7 +104,7 @@ models:
       ${server}
       -m ~/models/DeepSeek-V4-Flash-0731-GGUF/UD-IQ3_XXS/DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00001-of-00004.gguf
       -ngl 999 --split-mode layer --tensor-split 0.97,1,0.92,1.11 --ctx-size 524288 --load-mode dio
-      --parallel 1 --ubatch-size 1024
+      --parallel 4 --ubatch-size 1024
       --temp 1.0 --top-p 1.0 --top-k 0 --min-p 0
     env:
       - "HIP_VISIBLE_DEVICES=0,1,2,3"

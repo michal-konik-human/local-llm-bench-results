@@ -45,6 +45,7 @@ perf/                       local-llm-perf-bench output ($LLM_PERF_RESULTS)
   <run-id>/report.md          one run: verdict, per-GPU telemetry, hardware/software state
   configs/                    the rig's tuned multi-GPU configs (tensor splits for 2, 3 and 4 cards)
 serving/llama-swap.yaml     how the models are served (flags, context, ubatch, chat templates)
+PARALLEL.md                 several agents sharing one model at once: speed per agent and in total
 orchestrator/               a small model on the CPU that runs the benchmarks of the big ones
 hardware.md                 the machine
 COMMIT-MAP.md               tool commits as recorded in runs -> the same commits on GitHub
