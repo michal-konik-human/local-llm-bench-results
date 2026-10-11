@@ -2,7 +2,8 @@
 
 Measured on the reference rig ([hardware.md](hardware.md)). The tables below are rebuilt by
 `tools/build_results.py` from `quality/*/summary.json` and `perf/all-benchmark-results.md`; the findings
-are written by hand. How to read them: [README](README.md#how-to-read-the-results).
+are written by hand. How to read them: [README](README.md#how-to-read-the-results). Several agents sharing one
+model at the same time: [PARALLEL.md](PARALLEL.md).
 
 ## Findings
 
