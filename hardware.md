@@ -16,4 +16,4 @@ One workstation, used for local LLM agents research. All results in this repo we
 | Serving | [llama-swap](https://github.com/mostlygeek/llama-swap) v255 in front of `llama-server`; one model in VRAM at a time; config in [serving/llama-swap.yaml](serving/llama-swap.yaml) |
 
 Multi-GPU inference uses `--split-mode layer` with tuned tensor splits (see `perf/configs/`). How it was built and tuned (lane plan, BIOS, risers, fan curve, monitoring) and the traps on the way:
-[radeon-r9700-rocm-notes](https://github.com/michal-konik-human/radeon-r9700-rocm-notes).
+[radeon-r9700-rocm-notes](https://github.com/michal-koniu/radeon-r9700-rocm-notes).

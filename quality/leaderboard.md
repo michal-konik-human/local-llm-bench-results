@@ -29,4 +29,4 @@ _Generated 2026-10-11T05:51:49+02:00 from `*/summary.json` by `qbench report --p
 | gpt-oss-20b | `recommended` | −6 (−18 to +5) | 20 |
 | DeepSeek-V4-Flash-0731 | `recommended` | −1 (−2 to 0) | 20 |
 
-Judges used: deepseek-v4-flash-0731, gpt-oss-120b. Rubric checks are judged by a model from a *different family* than the candidate. Method: [local-llm-quality-bench METHODOLOGY](https://github.com/michal-konik-human/local-llm-quality-bench/blob/main/docs/METHODOLOGY.md).
+Judges used: deepseek-v4-flash-0731, gpt-oss-120b. Rubric checks are judged by a model from a *different family* than the candidate. Method: [local-llm-quality-bench METHODOLOGY](https://github.com/michal-koniu/local-llm-quality-bench/blob/main/docs/METHODOLOGY.md).
