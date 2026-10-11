@@ -1,0 +1,84 @@
+{
+  "graded_at": "2026-10-11T05:51:48+02:00",
+  "grader": {
+    "commit": "a613e07fdfae263c5762ed5bacef4007eb7a9f8e",
+    "dirty": false
+  },
+  "judge": {
+    "judge": "gpt-oss-120b",
+    "family": "gpt-oss",
+    "endpoint_model": "gpt-oss-120b",
+    "preset": "judge",
+    "sampling": {
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "max_tokens": 4096,
+    "extra_body": {
+      "chat_template_kwargs": {
+        "reasoning_effort": "low"
+      }
+    },
+    "prompt_sha256": "6bdbf5f4397d9be10dbb0260d23dced4813a471b4d65b06f8190b3f84362ca67",
+    "prompt_lang": "match"
+  },
+  "judges_configured": [
+    {
+      "judge": "deepseek-v4-flash-0731",
+      "family": "deepseek",
+      "endpoint_model": "deepseek-v4-flash-0731",
+      "preset": "judge",
+      "sampling": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "top_k": 0,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      },
+      "max_tokens": 4096,
+      "extra_body": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "prompt_sha256": "6bdbf5f4397d9be10dbb0260d23dced4813a471b4d65b06f8190b3f84362ca67",
+      "prompt_lang": "match"
+    },
+    {
+      "judge": "gpt-oss-120b",
+      "family": "gpt-oss",
+      "endpoint_model": "gpt-oss-120b",
+      "preset": "judge",
+      "sampling": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "top_k": 0,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      },
+      "max_tokens": 4096,
+      "extra_body": {
+        "chat_template_kwargs": {
+          "reasoning_effort": "low"
+        }
+      },
+      "prompt_sha256": "6bdbf5f4397d9be10dbb0260d23dced4813a471b4d65b06f8190b3f84362ca67",
+      "prompt_lang": "match"
+    }
+  ],
+  "n_samples": 120,
+  "n_pending": 0,
+  "n_excluded": 0,
+  "checks_revised": [],
+  "code_executed": true,
+  "allow_changed": false
+}

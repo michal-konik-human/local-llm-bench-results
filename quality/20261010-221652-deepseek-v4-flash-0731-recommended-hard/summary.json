@@ -1,0 +1,195 @@
+{
+  "run_id": "20261010-221652-deepseek-v4-flash-0731-recommended-hard",
+  "generated_at": "2026-10-11T05:51:49+02:00",
+  "k": 3,
+  "suite": "hard",
+  "model": {
+    "name": "deepseek-v4-flash-0731",
+    "display": "DeepSeek-V4-Flash-0731",
+    "family": "deepseek",
+    "quant": "UD-IQ3_XXS",
+    "params": "MoE (see model card)",
+    "license": "MIT",
+    "repo": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+    "perf": null
+  },
+  "preset": {
+    "name": "recommended",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "max_tokens": 8192,
+    "extra_body": {},
+    "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731 : temperature 1.0, top_p 0.95 for agentic scenarios (1.0 otherwise); thinking on by default in the Unsloth GGUF template"
+  },
+  "server_build": "b265-680a036",
+  "sampling_mismatches": [],
+  "judge": "gpt-oss-120b",
+  "judge_calibration": null,
+  "langs": {
+    "pl": {
+      "overall": {
+        "mean": 0.9240745370370371,
+        "ci": [
+          0.8114638447971781,
+          0.9938277777777778
+        ],
+        "n_families": 3
+      },
+      "families": {
+        "agentic": {
+          "mean": 0.9666666666666667,
+          "ci": [
+            0.8999999999999999,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.9444444444444445,
+          "pass_k": 0.8333333333333334,
+          "worst_k": 0.9,
+          "k": 3
+        },
+        "web_research": {
+          "mean": 0.9444444444444445,
+          "ci": [
+            0.8333333333333334,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.9444444444444445,
+          "pass_k": 0.8333333333333334,
+          "worst_k": 0.8333333333333334,
+          "k": 3
+        },
+        "long_context": {
+          "mean": 0.8611125,
+          "ci": [
+            0.6111125,
+            1.0
+          ],
+          "n_items": 8,
+          "n_cases": 8,
+          "pass1": 0.8333333333333334,
+          "pass_k": 0.75,
+          "worst_k": 0.8333375,
+          "k": 3
+        }
+      },
+      "reliability": {
+        "mean": 0.9555555555555556,
+        "ci": [
+          0.8888888888888888,
+          1.0
+        ],
+        "n_items": 12,
+        "n_cases": 12,
+        "pass1": 0.9444444444444445,
+        "pass_k": 0.8333333333333334,
+        "worst_k": 0.8666666666666667,
+        "k": 3
+      }
+    },
+    "en": {
+      "overall": {
+        "mean": 0.9287037037037038,
+        "ci": [
+          0.8151515151515151,
+          1.0
+        ],
+        "n_families": 3
+      },
+      "families": {
+        "agentic": {
+          "mean": 0.9666666666666667,
+          "ci": [
+            0.8999999999999999,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.9444444444444445,
+          "pass_k": 0.8333333333333334,
+          "worst_k": 0.9,
+          "k": 3
+        },
+        "web_research": {
+          "mean": 0.9444444444444445,
+          "ci": [
+            0.8333333333333334,
+            1.0
+          ],
+          "n_items": 6,
+          "n_cases": 6,
+          "pass1": 0.9444444444444445,
+          "pass_k": 0.8333333333333334,
+          "worst_k": 0.8333333333333334,
+          "k": 3
+        },
+        "long_context": {
+          "mean": 0.875,
+          "ci": [
+            0.625,
+            1.0
+          ],
+          "n_items": 8,
+          "n_cases": 8,
+          "pass1": 0.875,
+          "pass_k": 0.875,
+          "worst_k": 0.875,
+          "k": 3
+        }
+      },
+      "reliability": {
+        "mean": 0.9555555555555556,
+        "ci": [
+          0.8888888888888888,
+          1.0
+        ],
+        "n_items": 12,
+        "n_cases": 12,
+        "pass1": 0.9444444444444445,
+        "pass_k": 0.8333333333333334,
+        "worst_k": 0.8666666666666667,
+        "k": 3
+      }
+    }
+  },
+  "lang_gap": {
+    "gap": -0.005554999999999999,
+    "ci": [
+      -0.016664999999999996,
+      0.0
+    ],
+    "n_cases": 20
+  },
+  "cost": {
+    "median_completion_tokens": 2724.5,
+    "median_decode_tps": 22.5,
+    "median_latency_s": 145.63
+  },
+  "checks_revised": [],
+  "grader": {
+    "commit": "a613e07fdfae263c5762ed5bacef4007eb7a9f8e",
+    "dirty": false
+  },
+  "health": {
+    "samples": 120,
+    "errors": 0,
+    "excluded": 0,
+    "max_turns": 0,
+    "unparseable": 0,
+    "truncated": 6,
+    "pending": 0,
+    "tool_parse_fallback": 0,
+    "cases_pending_review": 20,
+    "cases": 20
+  }
+}

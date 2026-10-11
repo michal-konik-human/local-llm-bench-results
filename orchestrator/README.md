@@ -15,9 +15,9 @@ and publishing, then reports back.
 
 ## Which model, and why it can run next to DeepSeek
 
-| Candidate | Fits in RAM next to DeepSeek? | Agent skill (quality bench, k=3) | Verdict |
+| Candidate | Fits in RAM next to DeepSeek? | Agent skill (quality bench, hard suite, k=3) | Verdict |
 |---|---|---|---|
-| **gpt-oss-20b** MXFP4 | ✅ 12 GB of the ~38 GB free while DeepSeek is loaded | PL / EN: tools 86 / 92, agent 85 / 87, shopping 89 / 72, instructions 98 / 94 ([run](../quality/20261010-gpt-oss-20b-recommended/report.md)) | **use this** |
+| **gpt-oss-20b** MXFP4 | ✅ 12 GB of the ~38 GB free while DeepSeek is loaded | Hard suite PL / EN: agents 60 / 64, research 30 / 35, long docs 51 / 59 ([run](../quality/20261011-044658-gpt-oss-20b-recommended-hard/report.md)): enough to follow a fixed playbook with allowlisted commands, not to do the hard work itself | **use this** |
 | Bielik-11B Q8_0 | ✅ 12 GB | not measured yet; needed a patched tool template, overcalls tools | maybe later |
 | Qwen3-32B Q4_K_M | ✅ 18 GB, but dense: a few tok/s on CPU | not measured yet | too slow |
 | Qwen3-Next-80B Q4_1 | ❌ 47 GB | – | doesn't fit |

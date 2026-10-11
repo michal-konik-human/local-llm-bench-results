@@ -1,0 +1,401 @@
+{
+  "qbench_version": "1.0.0",
+  "run_id": "20261010-221652-deepseek-v4-flash-0731-recommended-hard",
+  "started_at": "2026-10-10T22:16:52+02:00",
+  "finished_at": "2026-10-11T04:46:42+02:00",
+  "command": "~/Desktop/github_repos/local-llm-quality-bench/qbench/__main__.py run --model deepseek-v4-flash-0731 --suite hard --k 3",
+  "bench": {
+    "commit": "a613e07fdfae263c5762ed5bacef4007eb7a9f8e",
+    "dirty": false
+  },
+  "host": {
+    "os": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor",
+    "gpus": [
+      "AMD Radeon AI PRO R9700",
+      "AMD Radeon AI PRO R9700",
+      "AMD Radeon AI PRO R9700",
+      "AMD Radeon AI PRO R9700",
+      "AMD Radeon Graphics"
+    ],
+    "rocm": "7.2.4"
+  },
+  "suite": {
+    "name": "hard",
+    "n_cases": 20,
+    "suite_sha256": "c20e798b94134ee667d5e019493d5e8ea62baa56ae0904a3361708e3c97547bd",
+    "cases": [
+      {
+        "id": "agent-business-trip",
+        "version": 1,
+        "sha256": "1222dd3f77789791e494bc7b58bde5f7505cae2860aee3f513a708ba4e7b73bb",
+        "prompt_sha256": "f1ba868fe50902acabeb6e218a95f0854b6b602c2061d580094ed3e1217ec43f",
+        "family": "agentic",
+        "review": "pending-owner",
+        "path": "cases-hard/agentic/agent-business-trip.yaml"
+      },
+      {
+        "id": "agent-deadline-cascade",
+        "version": 1,
+        "sha256": "69b07d3b9cc67f2f237e9982475dd7cc2220080acc170e6da60e69117318f2ef",
+        "prompt_sha256": "7b361f3f5cc735561f679fcb488c2b7c7cdfb414f4d5d14c60898a43c0cd0cec",
+        "family": "agentic",
+        "review": "pending-owner",
+        "path": "cases-hard/agentic/agent-deadline-cascade.yaml"
+      },
+      {
+        "id": "agent-expense-claims",
+        "version": 1,
+        "sha256": "011bad3cce1494b167ed5b8d3ae7fbb0fb30f6d0addeb10c9bd2429c8693744e",
+        "prompt_sha256": "c5ad30e270008d033a2e62cb3b18349dfda06087c271473afba115143d0109b4",
+        "family": "agentic",
+        "review": "pending-owner",
+        "path": "cases-hard/agentic/agent-expense-claims.yaml"
+      },
+      {
+        "id": "agent-inbox-triage",
+        "version": 1,
+        "sha256": "6bee6487745fd109dffc85ee3d331aac622e0431147097690b941c2ee840ceb5",
+        "prompt_sha256": "7379d170c45edc3f9ba97ebe09d5adcf6e9b3cf4da8fbd4a6d14111952efa3c6",
+        "family": "agentic",
+        "review": "pending-owner",
+        "path": "cases-hard/agentic/agent-inbox-triage.yaml"
+      },
+      {
+        "id": "agent-meeting-room-planning",
+        "version": 1,
+        "sha256": "8c141826ac1f5cfefa77976487356128f6b8bcd0be6db97c293b5999f2aaf7f7",
+        "prompt_sha256": "1a7b1ce19a3e06205d6206fbed66cc19490256f395e7e19adba5bbb91026315b",
+        "family": "agentic",
+        "review": "pending-owner",
+        "path": "cases-hard/agentic/agent-meeting-room-planning.yaml"
+      },
+      {
+        "id": "agent-reschedule-cascade",
+        "version": 1,
+        "sha256": "b055e82add22f3fc117961804ffed2588eb8d664e89e12d5c06ec80da393a012",
+        "prompt_sha256": "3bca9dc47cb1cb099331ffb530ec55d6661f9f9334c9404a53cf593a758b7e19",
+        "family": "agentic",
+        "review": "pending-owner",
+        "path": "cases-hard/agentic/agent-reschedule-cascade.yaml"
+      },
+      {
+        "id": "long-contract-penalty",
+        "version": 1,
+        "sha256": "70b2ae22e59ba5b448439bc7d2ea0bbb28121e27bc36dcd638f6dfb53597bf02",
+        "prompt_sha256": "17e41e31643a3ddefa7c4ca37426ad481fb560abdd2112558b29ebacc16ec05c",
+        "family": "long_context",
+        "review": "pending-owner",
+        "path": "cases-hard/long_context/long-contract-penalty.yaml"
+      },
+      {
+        "id": "long-financial-growth",
+        "version": 1,
+        "sha256": "dd6479e6ad44156fe9288195d22708c079c954a14eae7629bae06b358c16e05a",
+        "prompt_sha256": "4a082bcd6e38a75403ae3214aec8e824889095d8970758100c2baf3e4fd72623",
+        "family": "long_context",
+        "review": "pending-owner",
+        "path": "cases-hard/long_context/long-financial-growth.yaml"
+      },
+      {
+        "id": "long-incident-log",
+        "version": 1,
+        "sha256": "3f186bedddce4dde7cd68aea561e7b98e6203eb7ff3bc6741f7c1cc11d26e500",
+        "prompt_sha256": "8fc1eb2d7ceaf6cccad1e85dbd7d6ae0c435034b794f772f8735077009a20b8e",
+        "family": "long_context",
+        "review": "pending-owner",
+        "path": "cases-hard/long_context/long-incident-log.yaml"
+      },
+      {
+        "id": "long-minutes-decisions",
+        "version": 1,
+        "sha256": "fcbc5f09814b8b5c3cbea16488091791853c91343b3fb46555b3bc1ad62550ad",
+        "prompt_sha256": "0f1405dab6b5746806bd9d4a9178f4c42cb773c8b14bcb540140289827ac748a",
+        "family": "long_context",
+        "review": "pending-owner",
+        "path": "cases-hard/long_context/long-minutes-decisions.yaml"
+      },
+      {
+        "id": "long-orders-reconciliation",
+        "version": 1,
+        "sha256": "7c5eff0705fcd495790144124952ff15e5155e33ea99efa034cba9bac3a21c0e",
+        "prompt_sha256": "fe3c26ef4a88990e62dcd54cb0ed5fdc873387f5c235fe54915abfd5238d4834",
+        "family": "long_context",
+        "review": "pending-owner",
+        "path": "cases-hard/long_context/long-orders-reconciliation.yaml"
+      },
+      {
+        "id": "long-policy-diff",
+        "version": 1,
+        "sha256": "bd4993133ce158131d708cc3861cd3346452138251ad23099414d2eb354e05ab",
+        "prompt_sha256": "b170a07b3d74629c6e74e2490816c11a27a05e0a103fa56f0bcd3235c4c04fcc",
+        "family": "long_context",
+        "review": "pending-owner",
+        "path": "cases-hard/long_context/long-policy-diff.yaml"
+      },
+      {
+        "id": "long-regulation-amendments",
+        "version": 1,
+        "sha256": "6f1333f2d7388c313be3400bb69f7835a901c58692a5009fadf1b1f7c3c6c166",
+        "prompt_sha256": "2ca549c450a5b8f45874e0f46474c742cc99daf792754d024951d335335b6928",
+        "family": "long_context",
+        "review": "pending-owner",
+        "path": "cases-hard/long_context/long-regulation-amendments.yaml"
+      },
+      {
+        "id": "long-thread-action-items",
+        "version": 1,
+        "sha256": "5445da09fd8c1a59683e336962b615a2853e1296c64f3dae7cda8eadf85c2ef5",
+        "prompt_sha256": "7c05296d38caf460a740a0c7a452f373d71c73dcd5778a734b0d2b922f77d7bc",
+        "family": "long_context",
+        "review": "pending-owner",
+        "path": "cases-hard/long_context/long-thread-action-items.yaml"
+      },
+      {
+        "id": "research-award-cto",
+        "version": 1,
+        "sha256": "dacd52bac1cee06f4edf4c7b01880d550131aaf0b78eb50022a347d2174f8947",
+        "prompt_sha256": "e9cbeaab42b15b45b8fa6b443693bdded593a693934b8340ea6832aced8ec15b",
+        "family": "web_research",
+        "review": "pending-owner",
+        "path": "cases-hard/web_research/research-award-cto.yaml"
+      },
+      {
+        "id": "research-event-train",
+        "version": 1,
+        "sha256": "df4867802485296c8ec507466a13f1f1c666737df74ddd1bc5019c063f5bc0e8",
+        "prompt_sha256": "05485515c57ef3dce2c84778bab1455cfa2e4f361255165ca3eef168cd3cb7fb",
+        "family": "web_research",
+        "review": "pending-owner",
+        "path": "cases-hard/web_research/research-event-train.yaml"
+      },
+      {
+        "id": "research-laptop-constraints",
+        "version": 1,
+        "sha256": "5af63713c79ccaca9bd3b280738af9c1000d6a6c46b8797c78da072089e40ec6",
+        "prompt_sha256": "d6bfc9ba94abb6c5a4760141e48a079919b986704e271d226771af9950cc9f51",
+        "family": "web_research",
+        "review": "pending-owner",
+        "path": "cases-hard/web_research/research-laptop-constraints.yaml"
+      },
+      {
+        "id": "research-network-basket",
+        "version": 1,
+        "sha256": "0b7d2ec861a794f33c5bc9bebc933187466c1690e2b451e1976b8547c5eb2e1f",
+        "prompt_sha256": "bd0e0c3350fb1d78cc4d710d89803a931f27371d7b5f2e5471ab1e3e8e43d036",
+        "family": "web_research",
+        "review": "pending-owner",
+        "path": "cases-hard/web_research/research-network-basket.yaml"
+      },
+      {
+        "id": "research-offer-count",
+        "version": 1,
+        "sha256": "c79e20aebbf1230c881a7d5ef5ff447f40b0c5708033c3f1a88897902ac3b00e",
+        "prompt_sha256": "6dad9de6fdaf413c9a3cd5bebec35440678ed93ccd43bf1d90111a07f26aa7b4",
+        "family": "web_research",
+        "review": "pending-owner",
+        "path": "cases-hard/web_research/research-offer-count.yaml"
+      },
+      {
+        "id": "research-relief-current",
+        "version": 1,
+        "sha256": "2981d35614666918a6e184e2459cbce945143f41127a6b317a7da6d835d9f8ca",
+        "prompt_sha256": "43604a521c2ecc44ba3ec94f6460e0c738675c3e8c71a281f6d068df28717c9b",
+        "family": "web_research",
+        "review": "pending-owner",
+        "path": "cases-hard/web_research/research-relief-current.yaml"
+      }
+    ]
+  },
+  "model": {
+    "profile": {
+      "name": "deepseek-v4-flash-0731",
+      "display": "DeepSeek-V4-Flash-0731",
+      "family": "deepseek",
+      "vendor": "DeepSeek",
+      "params": "MoE (see model card)",
+      "license": "MIT",
+      "weights": {
+        "repo": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+        "gguf": "https://huggingface.co/unsloth/DeepSeek-V4-Flash-0731-GGUF",
+        "file": "UD-IQ3_XXS/DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00001-of-00004.gguf",
+        "quant": "UD-IQ3_XXS"
+      },
+      "endpoint": {
+        "base_url": "http://127.0.0.1:8080/v1",
+        "model": "deepseek-v4-flash-0731",
+        "timeout": 3600
+      },
+      "max_tokens": 8192,
+      "default_preset": "recommended",
+      "presets": {
+        "recommended": {
+          "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731 : temperature 1.0, top_p 0.95 for agentic scenarios (1.0 otherwise); thinking on by default in the Unsloth GGUF template",
+          "sampling": {
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 0,
+            "min_p": 0.0
+          }
+        },
+        "chat": {
+          "inherit": "recommended",
+          "source": "Same card: top_p 1.0 for non-agentic use",
+          "sampling": {
+            "top_p": 1.0
+          }
+        },
+        "no-thinking": {
+          "inherit": "recommended",
+          "source": "Unsloth GGUF docs: chat_template_kwargs enable_thinking=false switches to non-thinking chat mode",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          }
+        },
+        "judge": {
+          "source": "Judge use: non-thinking mode for fast checklist verdicts; samplers are overridden by judges/default.yaml",
+          "sampling": {
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "top_k": 0,
+            "min_p": 0.0
+          },
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          }
+        }
+      }
+    },
+    "profile_sha256": "2480e2efbba40db94e21eaa922b8834fcc8d08327892263b03726323205652f8"
+  },
+  "preset": {
+    "name": "recommended",
+    "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731 : temperature 1.0, top_p 0.95 for agentic scenarios (1.0 otherwise); thinking on by default in the Unsloth GGUF template",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "max_tokens": 8192,
+    "extra_body": {},
+    "system_prompt": null,
+    "notes": null
+  },
+  "k": 3,
+  "langs": [
+    "pl",
+    "en"
+  ],
+  "request_policy": {
+    "sequential": true,
+    "cache_prompt": false,
+    "seed": "crc32(run_id|case|lang|sample) + turn",
+    "all_samplers_explicit": true,
+    "strict_openai": false
+  },
+  "server": {
+    "base_url": "http://127.0.0.1:8080/v1",
+    "reasons": {},
+    "llama_cpp": {
+      "build_info": "b265-680a036",
+      "model_path": "~/models/DeepSeek-V4-Flash-0731-GGUF/UD-IQ3_XXS/DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00001-of-00004.gguf",
+      "model_ftype": "IQ3_XXS - 3.0625 bpw",
+      "n_ctx": 524288,
+      "total_slots": 1,
+      "chat_template_sha256": "e643c31fcec17f342f72296e02c46d35846bf4c70f6a0271f23bad73fd4eb645",
+      "chat_template_caps": {
+        "supports_object_arguments": true,
+        "supports_parallel_tool_calls": true,
+        "supports_preserve_reasoning": false,
+        "supports_reasoning_effort": true,
+        "supports_string_content": true,
+        "supports_system_role": true,
+        "supports_tool_calls": true,
+        "supports_tools": true,
+        "supports_typed_content": false
+      },
+      "server_default_sampling": {
+        "temperature": 1.0,
+        "top_k": 0,
+        "top_p": 1.0,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ]
+      },
+      "model_files": [
+        {
+          "name": "DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00001-of-00004.gguf",
+          "bytes": 5257696
+        },
+        {
+          "name": "DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00002-of-00004.gguf",
+          "bytes": 49910532416
+        },
+        {
+          "name": "DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00003-of-00004.gguf",
+          "bytes": 49257859456
+        },
+        {
+          "name": "DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00004-of-00004.gguf",
+          "bytes": 5034198464
+        }
+      ]
+    },
+    "llama_swap": {
+      "cmd": "~/llama.cpp/build/bin/llama-server --port 5801 --jinja --agent -fa on -m ~/models/DeepSeek-V4-Flash-0731-GGUF/UD-IQ3_XXS/DeepSeek-V4-Flash-0731-UD-IQ3_XXS-00001-of-00004.gguf -ngl 999 --split-mode layer --tensor-split 0.97,1,0.92,1.11 --ctx-size 524288 --load-mode dio --parallel 1 --ubatch-size 1024 --temp 1.0 --top-p 1.0 --top-k 0 --min-p 0",
+      "ttl": 600,
+      "cmd_sha256": "f098c0b45350e92b7222c25a7811ab6f58908f9baa3399362d9d992f6cf367c7"
+    }
+  },
+  "effective_sampling": {
+    "temperature": 1.0,
+    "top_k": 0,
+    "top_p": 0.949999988079071,
+    "min_p": 0.0,
+    "repeat_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "seed": 1029030916,
+    "n_predict": 16384,
+    "samplers": [
+      "penalties",
+      "dry",
+      "top_n_sigma",
+      "top_k",
+      "typ_p",
+      "top_p",
+      "min_p",
+      "xtc",
+      "temperature"
+    ],
+    "chat_format": "peg-native",
+    "reasoning_format": "deepseek"
+  },
+  "sampling_mismatches": [],
+  "counts": {
+    "records": 120,
+    "errors": 0,
+    "wall_s": 23389.4
+  }
+}
